@@ -1,4 +1,4 @@
-#!/home/kali/Documents/Ethical-hacking/eh_1/venv/bin/python3
+#!/home/kali/Documents/Ethical-hacking/eh_1/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
