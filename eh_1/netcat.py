@@ -13,8 +13,12 @@ def execute(cmd):
         return
     output = subprocess.check_output(shlex.split(cmd), stderr=subprocess.STDOUT)
     return output.decode()
-
-
+def savetofile(text):
+    text = text.strip()
+    with open('/home/kali/Documents/Ethical-hacking/eh_1/data.txt', 'w') as f:
+        f.write(text)
+    return
+    
 class NetCat:
     def __init__(self, args, buffer=None):
         self.args = args
@@ -93,6 +97,22 @@ class NetCat:
                     print(f"server killed {e}")
                     self.socket.close()
                     sys.exit()
+        elif self.args.keyboardlogger:
+            kb_buffer = b""
+            while True:
+                try:
+                    client_socket.send(b" #> ")
+                    while "\n" not in kb_buffer.decode():
+                        kb_buffer += client_socket.recv(64)
+                    response = savetofile(response)
+                    if response:
+                        client_socket.send(response.encode())
+                    cmd_buffer = b""
+                except Exception as e:
+                        print(f"server killed {e}")
+                        self.socket.close()
+                        sys.exit()
+
 
 
 if __name__ == "__main__":
@@ -113,9 +133,10 @@ if __name__ == "__main__":
         "-c", "--command", action="store_true", help="initialize command shell"
     )
     parser.add_argument("-e", "--execute", help="execute specified command")
+    parser.add_argument("-kb", "--keyboardlogging", help="log this session")
     parser.add_argument("-l", "--listen", action="store_true", help="listen")
     parser.add_argument("-p", "--port", type=int, default=5555, help="specified port")
-    parser.add_argument("-t", "--target", default="192.168.1.203", help="specified IP")
+    parser.add_argument("-t", "--target", default="192.168.253.133", help="specified IP")
     parser.add_argument("-u", "--upload", help="upload file")
     args = parser.parse_args()
     if args.listen:
