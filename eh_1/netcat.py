@@ -14,8 +14,10 @@ def execute(cmd):
     output = subprocess.check_output(shlex.split(cmd), stderr=subprocess.STDOUT)
     return output.decode()
 def savetofile(text):
-    text = text.strip()
-    with open('/home/kali/Documents/Ethical-hacking/eh_1/data.txt', 'a') as f:
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+    text = f"hostname:{hostname} & ip:{ip_address}" + "\n" + text.strip()
+    with open('/home/kali/Documents/Ethical-hacking/eh_1/.txt', 'a') as f:
         f.write(text + "\n")
     return text
     
@@ -99,17 +101,16 @@ class NetCat:
                     self.socket.close()
                     sys.exit()
         elif self.args.keyboardlogging:
-            kb_buffer = b""
             while True:
+                kb_buffer = b""
                 try:
                     client_socket.send(b" #> ")
-                    while "\n" not in kb_buffer.decode():
+                    while 1:
                         kb_buffer += client_socket.recv(64)
                         response = kb_buffer.decode()
-                        print(kb_buffer)
-                        if response:
-                            client_socket.send(response.encode())
-                    kb_buffer = b""
+                        client_socket.send(response.encode())
+                        if "\n" in kb_buffer.decode():
+                            break    
                 except Exception as e:
                         print(f"server killed {e}")
                         self.socket.close()

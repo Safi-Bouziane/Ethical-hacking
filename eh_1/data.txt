@@ -1,4 +1,0 @@
-lslspwdls/npwd/nls
-pwd
-ls
-pwd
