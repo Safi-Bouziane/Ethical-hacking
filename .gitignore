@@ -37,6 +37,8 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+#log file eh1
+logeh1.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
