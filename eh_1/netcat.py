@@ -17,7 +17,7 @@ def savetofile(text):
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
     text = f"hostname:{hostname} & ip:{ip_address}" + "\n" + text.strip()
-    with open('/home/kali/Documents/Ethical-hacking/eh_1/.txt', 'a') as f:
+    with open('/home/kali/Documents/Ethical-hacking/eh_1/logeh1.txt', 'a') as f:
         f.write(text + "\n")
     return text
     
