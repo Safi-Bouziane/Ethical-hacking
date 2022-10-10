@@ -1,1 +1,4 @@
-d.z
+lslspwdls/npwd/nls
+pwd
+ls
+pwd

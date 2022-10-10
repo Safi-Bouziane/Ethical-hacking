@@ -15,8 +15,8 @@ def execute(cmd):
     return output.decode()
 def savetofile(text):
     text = text.strip()
-    with open('/home/kali/Documents/Ethical-hacking/eh_1/data.txt', 'w') as f:
-        f.write(text)
+    with open('/home/kali/Documents/Ethical-hacking/eh_1/data.txt', 'a') as f:
+        f.write(text + "\n")
     return text
     
 class NetCat:
@@ -90,6 +90,7 @@ class NetCat:
                     while "\n" not in cmd_buffer.decode():
                         cmd_buffer += client_socket.recv(64)
                     response = execute(cmd_buffer.decode())
+                    savetofile(cmd_buffer.decode())
                     if response:
                         client_socket.send(response.encode())
                     cmd_buffer = b""
@@ -104,11 +105,10 @@ class NetCat:
                     client_socket.send(b" #> ")
                     while "\n" not in kb_buffer.decode():
                         kb_buffer += client_socket.recv(64)
-                    response = kb_buffer.decode()
-                    print(kb_buffer)
-                    savetofile(response)
-                    if response:
-                        client_socket.send(response.encode())
+                        response = kb_buffer.decode()
+                        print(kb_buffer)
+                        if response:
+                            client_socket.send(response.encode())
                     kb_buffer = b""
                 except Exception as e:
                         print(f"server killed {e}")
