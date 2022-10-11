@@ -7,8 +7,8 @@ import threading
 import time
 
 FILTERS = [".jpg", ".gif", ".png", ".css"]
-TARGET = "http://boodelyboo.com/wordpress"
-THREADS = 10
+TARGET = "http://localhost:8080/wordpress/wp-admin"
+THREADS = 100
 
 answers = queue.Queue()
 web_paths = queue.Queue()
@@ -47,7 +47,8 @@ def test_remote():
             answers.put(url)
             sys.stdout.write('+')
         else:
-            sys.stdout.write('x')
+            print(url)
+            print (r.status_code)
         sys.stdout.flush()
             
 def run():
@@ -63,7 +64,7 @@ def run():
         
 
 if __name__ == '__main__':
-    with chdir("/home/tim/Downloads/wordpress"):
+    with chdir("/home/kali/wordpress-6.0.2-0/"):
         gather_paths()
     input('Press return to continue.')
     run()
