@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Wijzig Review voor {{ review.film.titel }}</h2>
+{% if error %}
+    <div role="alert">{{ error }}</div>
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Review wijzigen</button>
+</form>
+{% endblock content %}

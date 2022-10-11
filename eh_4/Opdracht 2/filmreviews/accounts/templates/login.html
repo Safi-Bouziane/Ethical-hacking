@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Inloggen</h2>
+    {% if error %}
+    <div class="foutmelding" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Inloggen</button>
+    </form>
+{% endblock content %}

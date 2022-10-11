@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Filmoverzicht</h2>
+    {% for nieuwsbericht in nieuwsberichten %}
+        <h3>{{ nieuwsbericht.koptekst }}</h3>
+        <p>{{ nieuwsbericht.datum }}</p>
+        <p>{{ nieuwsbericht.body }}</p>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Detailpagina voor de film {{ film.titel }}</h3>
+<img src="{{ film.afbeelding.url }}">
+<p>{{ film.beschrijving }}</p>
+{% if film.url %}
+    <p><a href="{{ film.url }}">Film Link</a></p>
+{% endif %}
+{% if user.is_authenticated %}
+    <a class="actielink" href="{% url 'maakreview' film.id %}">Review deze film</a>
+{% endif %}
+
+<h3>Reviews</h3>
+<ul class="reviewlijst">
+{% for review in reviews %}
+<li>
+    <h4>Review door {{ review.user.username }}</h4>
+    <p>{{ review.tekst }}</p>
+    <p>Geplaatst op {{ review.datum }}</p>
+    {% if user.is_authenticated and user == review.user %}
+        <a href="{% url 'wijzigreview' review.id %}">Deze review aanpassen</a>
+        <a href="{% url 'verwijderreview' review.id %}">Deze review verwijderen</a>
+    {% endif %}
+</li>
+{% endfor %}
+</ul>
+{% endblock content %}

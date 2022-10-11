@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+      <form action="">
+          <label for="film">Zoeken naar een film:</label>
+          <input type="text" name="zoekFilm" id="film"/>
+          <button type="submit">Zoek film</button>
+      </form>
+      <h2>Filmoverzicht</h2>
+      {% if not zoekTerm is None %}
+      <p>Zoeken naar {{ zoekTerm }}</p>
+      {% endif %}
+
+      {% for film in films %}
+        <section>
+            <h3>
+                <a href="{% url 'detail' film.id %}">{{film.titel }}</a>
+            </h3>
+            <img src="{{ film.afbeelding.url }}">
+            <p>{{ film.beschrijving }}</p>
+            {% if film.url %}
+                <a href="{{ film.url }}">Film Link</a>
+            {% endif %}
+        </section>
+      {% endfor %}
+      <h2>Schrijf je in voor de nieuwsbrief:</h2>
+      <form action="{% url 'schrijfin' %}">
+          <label for="email">Geef je email adres:</label>
+          <input type="email" id="email" name="email" />
+          <button type="submit" class="btn btn-primary">Schrijf je in</button>
+      </form>
+{% endblock content %}

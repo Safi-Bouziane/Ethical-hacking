@@ -1,0 +1,98 @@
+body {
+    max-width: 80%;
+    margin: 2rem auto;
+    font-family: arial, sans-serif;
+    font-size: 1.4rem;
+}
+
+header img {
+    display: inline
+}
+
+main img {
+    display: block;
+    width: 500px;
+}
+
+h1, h2, h3, h4 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+}
+
+h1 a {
+    text-decoration: none;
+    color: black;
+}
+
+h2, h3 {
+    font-size: 2rem;
+}
+
+h3 a {
+    text-decoration: none;
+    color: crimson;
+}
+
+h4 {
+    font-size: 1.4rem;
+}
+
+p {
+    margin-bottom: 2rem;
+    line-height: 3rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+nav ul li a {
+    color: crimson;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+form {
+    margin-bottom: 2rem;
+}
+
+input, button, textarea {
+    font-family: arial, sans-serif;
+    font-size: 1.4rem;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+.actielink, button[type=submit], ul.reviewlijst a {
+    display: inline-block;
+    background-color: crimson;
+    color: white;
+    border: .1rem solid black;
+    padding: 1rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+button[type=submit] {
+    padding: 0.1rem 1rem;
+}
+
+ul.reviewlijst a {
+    background-color: #626f9a;
+}
+
+ul.reviewlijst li {
+    border-top: .1rem solid black;
+    padding-top: 2rem;
+
+}
