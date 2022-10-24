@@ -14,3 +14,4 @@ htmltext = r.text
 
 if htmltext.__contains__("Log in | Django site admin"):
     print("default admin page found")
+#ik heb hier nog geprobeerd om via de headers te zien of het een django webserver is. maar hem dit opgegeven omdat dit niet zou werken met proxies.
