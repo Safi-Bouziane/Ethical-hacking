@@ -8,7 +8,7 @@ password_file = "eh_4\Opdracht 1\pass.txt"
 file = open(password_file, "r")
 
 a_session = requests.Session()
-a_session. get(url)
+a_session.get(url)
 session_cookies = a_session.cookies
 cookies_dictionary = session_cookies.get_dict()
 crsf = cookies_dictionary.get('csrftoken')
