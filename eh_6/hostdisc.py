@@ -72,23 +72,27 @@ if exit == "y":
                 print(f"{host}:{dst_port} is filtered (silently dropped).")
 
 #REMOTE OS DETECTIE
-seq = 12345
-sport = 1040
-dport = 80
+exit = input("wil je verder naar Remote os discovery (poort scan) voor de gevonden hosts? (y/n): ")
+if exit == "y":
+    for hosts in clients:
+        host = hosts[1].psrc
+        seq = 12345
+        sport = 1040
+        dport = 80
 
-ip_packet = IP(dst='192.168.1.59')
-syn_packet = TCP(sport=sport, dport=dport, flags='S', seq=seq)
+        ip_packet = IP(dst=host)
+        syn_packet = TCP(sport=sport, dport=dport, flags='S', seq=seq)
 
-packet = ip_packet/syn_packet
-synack_response = sr1(packet)
+        packet = ip_packet/syn_packet
+        synack_response = sr1(packet)
 
-next_seq = seq + 1
-my_ack = synack_response.seq + 1
+        next_seq = seq + 1
+        my_ack = synack_response.seq + 1
 
-ack_packet = TCP(sport=sport, dport=dport, flags='A', seq=next_seq, ack=my_ack)
+        ack_packet = TCP(sport=sport, dport=dport, flags='A', seq=next_seq, ack=my_ack)
 
-send(ip_packet/ack_packet)
+        send(ip_packet/ack_packet)
 
-payload_packet = TCP(sport=sport, dport=dport, flags='', seq=next_seq)
-payload = "this is a test"
-send(ip_packet/payload_packet/payload)
+        payload_packet = TCP(sport=sport, dport=dport, flags='', seq=next_seq)
+        payload = "this is a test"
+        send(ip_packet/payload_packet/payload)
