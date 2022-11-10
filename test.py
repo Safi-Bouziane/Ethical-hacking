@@ -1,1 +1,1 @@
-print($SAFI)
+print(${{SAFI})
